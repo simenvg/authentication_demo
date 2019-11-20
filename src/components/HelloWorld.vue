@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>SIMENSIMEN</h1>
     <h1>Dette er pushet nå</h1>
+    <h1>oG DETTE</h1>
   </div>
 </template>
 
