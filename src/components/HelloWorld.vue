@@ -4,7 +4,8 @@
     <h1>Dette er pushet nå</h1>
     <h1>Hallo igjen ja</h1>
     <button class="btn" @click="btnClick">Button</button>
-    <p>{{response}}</p>
+    <p>{{resp}}</p>
+    <button class="btn" @click="showResp">Button</button>
   </div>
 </template>
 
@@ -17,15 +18,16 @@ export default {
   },
   data: function() {
     return{
-      response: ''
+      resp: 'lol'
     }
   },
   methods: {
     btnClick: function(){
       console.log("HEI");
-      axios
-      .get('https://api-dot-fluent-webbing-257713.appspot.com/mainpage')
-      .then(response => (this.response = response))
+      axios.get('https://test-dot-api-dot-fluent-webbing-257713.appspot.com/mainpage/').then(response => (this.resp = response))
+    },
+    showResp: function(){
+      console.log(this.resp);
     }
   }
 }
