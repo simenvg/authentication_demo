@@ -5,7 +5,13 @@
     <h1>Hallo igjen ja</h1>
     <button class="btn" @click="btnClick">Button</button>
     <p>{{resp}}</p>
-    <button class="btn" @click="showResp">Button</button>
+    <br>
+    <br>
+    <input v-model="epost" placeholder="epost">
+    <input v-model="passord" placeholder="passord">
+    <input v-model="name" placeholder="name">
+    <button class="btn" @click="submit">Button</button>
+
   </div>
 </template>
 
@@ -18,7 +24,10 @@ export default {
   },
   data: function() {
     return{
-      resp: 'lol'
+      resp: 'lol',
+      epost: 'fds',
+      passord: 'fds',
+      name: 'fdsafd'
     }
   },
   methods: {
@@ -28,6 +37,28 @@ export default {
     },
     showResp: function(){
       console.log(this.resp);
+    },
+    submit1: function(){
+      console.log(this.epost);
+      console.log(this.passord);
+      console.log(this.name);
+    },
+    submit() {
+      window.firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.epost, this.passord)
+        .then(data => {
+          data.user
+            .updateProfile({
+              displayName: this.name
+            })
+            .then(() => {
+              console.log(data);
+            });
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
     }
   }
 }
