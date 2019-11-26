@@ -17,7 +17,7 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   props: {
     msg: String
   },
