@@ -1,8 +1,9 @@
 <template>
   <fixed-header>
     <div class="navbar">
-      <a href="/register">Register</a>
-      <a href="/login">Login</a>
+      <a href="/" style="margin: 5px;">Home</a>  
+      <a href="/register" style="margin: 5px;">Register</a>
+      <a href="/login" style="margin: 5px;">Login</a>
     </div>
   </fixed-header>
 </template>
@@ -18,6 +19,11 @@ export default {
 </script> 
  
 <style>
+.navbar{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .navbar.vue-fixed-header--isFixed {
   position: fixed;
   left: 0;
