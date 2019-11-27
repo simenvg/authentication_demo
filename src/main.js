@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import { routes } from './routes'
 import VueRouter from 'vue-router'
+import store from "./store";
+import * as firebase from "firebase";
 
 Vue.use(VueRouter)
 
@@ -12,7 +14,19 @@ const router = new VueRouter({
 
 Vue.config.productionTip = false
 
+var config = {
+  apiKey: "AIzaSyB-puayQ4D-_l19cfSTOxA4CW38heMT9eU",
+  authDomain: "fluent-webbing-257713.firebaseapp.com",
+};
+firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged(user => {
+  store.dispatch("fetchUser", user);
+  console.log(store.getters.user);
+});
+
 new Vue({
   render: h => h(App),
   router,
+  store,
 }).$mount('#app')

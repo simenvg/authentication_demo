@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
     data: function() {
         return{
@@ -32,7 +34,7 @@ export default {
     },
     methods: {
         submit: function() {
-            window.firebase
+            firebase
             .auth()
             .createUserWithEmailAndPassword(this.epost, this.passord)
             .then(data => {
@@ -63,5 +65,8 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .form-group{
+        width:350px;
     }
 </style>
