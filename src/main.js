@@ -21,8 +21,10 @@ var config = {
 firebase.initializeApp(config);
 
 firebase.auth().onAuthStateChanged(user => {
-  store.dispatch("fetchUser", user);
-  console.log(store.getters.user);
+  firebase.auth().currentUser.getIdToken(true).then(function(idToken){
+    store.dispatch("fetchUser", [user, idToken]);
+  });
+  
 });
 
 new Vue({

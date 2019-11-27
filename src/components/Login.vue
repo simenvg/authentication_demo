@@ -46,10 +46,6 @@ export default {
                 this.error = err.message;
             });
         },
-        submit2: function(){
-            console.log(this.epost);
-            console.log(this.passord);
-        }
     }
     
 }

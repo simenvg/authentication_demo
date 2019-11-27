@@ -29,7 +29,7 @@ export default {
   methods: {
     btnClick: function(){
       console.log("HEI");
-      axios.get('https://test-dot-api-dot-fluent-webbing-257713.appspot.com/mainpage/').then(response => (this.resp = response))
+      axios.get('https://test-dot-api-dot-fluent-webbing-257713.appspot.com/open/').then(response => (this.resp = response))
     }
   }
 }
