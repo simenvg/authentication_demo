@@ -4,9 +4,9 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 
 export const routes = [
-  {path: '', component: Home },
-  {path: '/register', component: Register },
-  {path: '/login', component: Login },
-  {path: '/dashboard', component: Dashboard },
+  {path: '', component: Home, name: "home" },
+  {path: '/register', component: Register, name: "register" },
+  {path: '/login', component: Login, name: "login" },
+  {path: '/dashboard', component: Dashboard, name: "dashboard" },
 
 ];

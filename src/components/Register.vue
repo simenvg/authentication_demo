@@ -43,7 +43,9 @@ export default {
                 displayName: this.name
             })
                 .then(() => {
-                console.log(data);
+                this.$router.replace({
+                    name: "dashboard"
+                });
                 });
             })
             .catch(err => {

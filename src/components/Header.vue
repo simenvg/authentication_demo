@@ -1,17 +1,35 @@
 <template>
     <div class="navbar">
-      <p class="status">User: {{status}}</p>
+      <p class="status">User: {{user}}</p>
       <a class="header-element" href="/">Home</a>  
-      <a class="header-element" href="/register">Register</a>
-      <a class="header-element" href="/login">Login</a>
+      <a v-if="!status" class="header-element" href="/register">Register</a>
+      <a v-if="!status" class="header-element" href="/login">Login</a>
+      <button v-if="status" class="header-element" @click="signOut">Sign out</button>
     </div>
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   computed: {
-    status () {
+    user () {
       return this.$store.getters.user;
+    },
+    status () {
+      return this.$store.getters.user.loggedIn;
+    }
+  },
+  methods: {
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({
+            name: "home"
+          });
+        });
     }
   }
 }
@@ -38,6 +56,8 @@ export default {
   padding: 0;
   margin: 0;
   margin-right: 5px;
+  border: none;
+  background-color: transparent;
   /* border: 2px solid #047e47;
   background-color: #05854b; */
   display: flex;
@@ -45,6 +65,7 @@ export default {
   justify-content: center;
   font: 20px bold arial, sans-serif;
   color: white;
+  text-decoration: none;
 }
 
 .status {
