@@ -6,7 +6,9 @@
     <br>
     <br>
     <br>
-    <button class="btn" @click="btnClick">Sjekk kontakt med API i App Engine</button>
+    <button class="btn" @click="openEndpoint">Åpent endepunkt</button>
+    <button class="btn" @click="closedEndpoint">Krever innlogging</button>
+    <button class="btn" @click="closedEndpointHeader">med header</button>
     <p>{{resp}}</p>
     <br>
     <br>
@@ -15,6 +17,7 @@
 </template>
 
 <script>
+
 import axios from 'axios';
 export default {
   name: 'Home',
@@ -27,10 +30,28 @@ export default {
     }
   },
   methods: {
-    btnClick: function(){
+    openEndpoint: function(){
       console.log("HEI");
-      axios.get('https://test-dot-api-dot-fluent-webbing-257713.appspot.com/open/').then(response => (this.resp = response))
-    }
+      axios.get('https://api-dot-fluent-webbing-257713.appspot.com/open/').then(response => (this.resp = response.data))
+    },
+    closedEndpoint: function(){
+      console.log("HEI");
+      axios.get('https://api-dot-fluent-webbing-257713.appspot.com/closed/').then(response => (this.resp = response.data)).catch(error => {
+      this.resp = error.response.data
+      });
+    },
+    closedEndpointHeader: function(){
+      console.log("HEI");
+      if (this.$store.getters.user.loggedIn){
+        var idToken = this.$store.getters.user.data.idToken;
+      } else{
+        idToken = null;
+      }
+      
+      axios.get('https://api-dot-fluent-webbing-257713.appspot.com/closed/', { 'headers': { 'idToken': idToken } }).then(response => (this.resp = response.data)).catch(error => {
+      this.resp = error.response.data
+      });
+    },
   }
 }
 </script>
