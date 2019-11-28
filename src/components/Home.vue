@@ -1,15 +1,17 @@
 <template>
   <div class="hello">
     <h1>Google Cloud demo</h1>
-    <h3>Test av Google Identity Platform, Google Cloud App Engine etc.</h3>
+    <h3>Test of Google Identity Platform, Google Cloud App Engine etc.</h3>
     <br>
     <br>
+    <p v-if="!status">You are not logged in, register user or log in to use the dashboard</p>
+    <p v-if="status">You are logged in</p>
     <br>
     <br>
     <div class="btns">
-      <button class="btn" @click="openEndpoint">Åpent endepunkt</button>
-      <button class="btn" @click="closedEndpoint">Krever innlogging</button>
-      <button class="btn" @click="closedEndpointHeader">med header</button>
+      <button class="btn" @click="openEndpoint">Open endpoint</button>
+      <button class="btn" @click="closedEndpoint">Protected endpoint</button>
+      <button class="btn" @click="closedEndpointHeader">Protected with idToken in header</button>
     </div>
     <div v-if="this.resp !== ''" class="response">
       <div class="card">
@@ -32,6 +34,11 @@
 import axios from 'axios';
 export default {
   name: 'Home',
+  computed: {
+    status () {
+      return this.$store.getters.user.loggedIn;
+    }
+  },
   props: {
     msg: String
   },
