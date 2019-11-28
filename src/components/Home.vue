@@ -6,10 +6,21 @@
     <br>
     <br>
     <br>
-    <button class="btn" @click="openEndpoint">Åpent endepunkt</button>
-    <button class="btn" @click="closedEndpoint">Krever innlogging</button>
-    <button class="btn" @click="closedEndpointHeader">med header</button>
-    <p>{{resp}}</p>
+    <div class="btns">
+      <button class="btn" @click="openEndpoint">Åpent endepunkt</button>
+      <button class="btn" @click="closedEndpoint">Krever innlogging</button>
+      <button class="btn" @click="closedEndpointHeader">med header</button>
+    </div>
+    <div v-if="this.resp !== ''" class="response">
+      <div class="card">
+        <div class="card-header">
+          Response
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{this.resp}}</p>
+        </div>
+      </div>
+    </div>
     <br>
     <br>
 
@@ -82,5 +93,23 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin: 5px;
 }
+
+  .btns{
+    display: flex;
+    justify-content: center
+  }
+
+  .card {
+    width: 300px;
+    margin: 15px;
+  }
+
+  .response {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    width: 100%;
+  }
 </style>

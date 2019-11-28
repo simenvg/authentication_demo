@@ -26,9 +26,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace({
-            name: "home"
-          });
+          window.location.href = "/";
         });
     }
   }
