@@ -1,7 +1,8 @@
 <template>
     <div class="navbar">
       <p v-if="status" class="status">User: {{user.data.user.email}}</p>
-      <a class="header-element" href="/">Home</a>  
+      <a class="header-element" href="/">Home</a>
+      <a class="header-element" href="/dashboard">Dashboard</a>   
       <a v-if="!status" class="header-element" href="/register">Register</a>
       <a v-if="!status" class="header-element" href="/login">Login</a>
       <button v-if="status" class="header-element" @click="signOut">Sign out</button>
