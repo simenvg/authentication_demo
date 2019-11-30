@@ -13,12 +13,17 @@
     <!-- Page content -->
     <div class="main">
       <h1 v-if="activeChatIndex !== null">{{objs[activeChatIndex].header}}</h1>
+      <br>
+      <p>HEI</p>
+      <button @click="getThreads">GET THREADS</button>
+      <p>{{resp}}</p>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 import ChatHeader from "./ChatHeader"
+import axios from 'axios';
 export default {
   data: function() {
         return{
@@ -31,7 +36,8 @@ export default {
               {header: "header4", createdBy: "createdBy4", index: 4},
               {header: "header5", createdBy: "createdBy5", index: 5},
               {header: "header6", createdBy: "createdBy6", index: 6},
-            ]
+            ],
+            resp: ''
         }
     },
   computed: {
@@ -55,6 +61,9 @@ export default {
       } else{
         return false;
       }
+    },
+    getThreads: function(){
+      axios.get('https://api-dot-fluent-webbing-257713.appspot.com/getthreads/').then(response => (this.resp = response.data))
     }
   }
 };
