@@ -63,7 +63,8 @@ export default {
       }
     },
     getThreads: function(){
-      axios.get('https://api-dot-fluent-webbing-257713.appspot.com/getthreads/').then(response => (this.resp = response.data))
+      axios.get('https://api-dot-fluent-webbing-257713.appspot.com/getthreads/').then(response => (this.resp = response.data)).catch(error => {
+      this.resp = error.response.data
     }
   }
 };
